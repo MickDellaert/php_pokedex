@@ -1,3 +1,16 @@
+# Goals:
+
+- Making sure Apache is set up and running
+- Making sure PHP is running
+- Check if debug is working with XDebug browser extension and in PhpStorm
+- Make a new repository and set up the repository's directory to display the content in a virtual host
+- Create a basic form and get the input value back with php
+- Fetch the data from API with php
+- Get the data from the input field and use this as a variable in the fetch URL
+- Search in the fetched data and only get the desired data and put them in variables
+- Display the data in HTML
+- Add CSS
+
 # Title: The pokemon challenge - PHP style
 
 - Repository: `challenge-pokemon-php`
