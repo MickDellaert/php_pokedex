@@ -54,7 +54,7 @@
     function hasEvolved($poke_species){
         $poke_evolve_name = $poke_species["evolves_from_species"];
         if (is_null($poke_evolve_name)) {
-            echo "pokemon has no evolution";
+            echo "<p class='no-evo-text'>pokemon has no evolution</p>";
         } else {
             $poke_evolve_name = $poke_species["evolves_from_species"]["name"];
             echo "<h2 class='poke-evo-text'>Evolved from: $poke_evolve_name </h2>";

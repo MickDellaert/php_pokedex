@@ -108,7 +108,9 @@ input {
     width: 140px;
     height:30px;
     margin: 5px;
+    text-align: center;
 }
+
 .search-text {
     font-size: 20px;
     margin-bottom: 10px;
@@ -118,4 +120,8 @@ input {
 
 .poke-text {
     margin-top: 30px;
+}
+
+.no-evo-text {
+    text-align: center;
 }
