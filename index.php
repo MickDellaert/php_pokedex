@@ -11,11 +11,12 @@
 <body>
 
     <?php
-    $input = $_GET["poke_input"];
-    $input = strtolower($input);
+
 
     // First check if input field in the form is set, if not assign an id number of a pokemon to avoid error messages
     if (!empty($_GET["poke_input"])) {
+        $input = $_GET["poke_input"];
+        $input = strtolower($input);
 
         // Get JSON data from API
         @$get_poke_data = file_get_contents("https://pokeapi.co/api/v2/pokemon/$input");
@@ -52,15 +53,19 @@
     $poke_hp = $poke_data["stats"][0]["base_stat"];
     $poke_attack = $poke_data["stats"][1]["base_stat"];
 
-    // Loop to show four moves in a list
-    function showMoves($moves){
-        echo "<h2>Abilities:</h2>";
+    // Loop to show four moves in a list if there are more than one moves
+    function showMoves($poke_data){
+        echo "<h2 class='abilities-title'>Abilities:</h2>";
         echo "<ol class='poke-moves-list'>";
-        for ($x = 0; $x < 4; $x++) {
-            $poke_moves = $moves['moves'][$x]["move"]["name"];
-            echo "<li>$poke_moves</li>";
+        if (count($poke_data["moves"]) < 2) {
+            echo $poke_data['moves'][0]["move"]["name"];
+        } else {
+            for ($x = 0; $x < 4; $x++) {
+                $poke_moves = $poke_data['moves'][$x]["move"]["name"];
+                echo "<li>$poke_moves</li>";
+            }
+            echo "</ol>";
         }
-        echo "</ol>";
     }
 
     // Check if previous species is present; if it returns null, echo a message, else show evolution name and image
@@ -113,10 +118,19 @@
             </div>
 
             <div class="container-right">
-            <?php
+                <div class="poke-abilities">
+                <?php
                 showMoves($poke_data);
                 echo "<p class='poke-text'>$poke_text </p>";
-            ?>
+                ?>
+                </div>
+                <div class="buttons-center-right">
+                    <div class="arrow-left"></div>
+                    <div class="square"></div>
+                    <div class="arrow-right"></div>
+
+
+                </div>
             </div>
         </div>
 

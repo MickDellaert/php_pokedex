@@ -121,12 +121,48 @@ body {
 }
 
 .container-right {
-    background-color: #b6e1e9;
     border-radius: 5px;
     width: 280px;
-    height: 260px;
-    border: 1px solid black;
+}
+
+.poke-abilities {
     padding: 20px;
+    height: 260px;
+    background-color: #b6e1e9;
+    border: 1px solid black;
+}
+
+.buttons-center-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    margin-top: 10px;
+}
+
+.arrow-left {
+    width: 0;
+    height: 0;
+    border-top: 25px solid transparent;
+    border-right: 50px solid black;
+    border-bottom: 25px solid transparent;
+    margin-right: 10px;
+}
+
+.arrow-right {
+    width: 0;
+    height: 0;
+    border-top: 25px solid transparent;
+    border-left: 50px solid black;
+    border-bottom: 25px solid transparent;
+    margin-left: 10px;
+}
+
+.square {
+    width: 50px;
+    height: 50px;
+    border-radius: 6px;
+    background-color: black;
 }
 
 .container-bottom {
