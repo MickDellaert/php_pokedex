@@ -38,7 +38,7 @@ You will be surprised how easy it is to pick a new  language, once you know your
 
 Take a deep breath, and remember: you can do this!
 
-![Timeline](youcandoit.jpg)
+![](img/youcandoit.jpg)git a
 
 ## Tips
 Here are a few functions you will need to help you on your way.
