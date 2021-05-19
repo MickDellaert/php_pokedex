@@ -11,9 +11,11 @@
 <body>
 
     <?php
+    $input = $_GET["poke_input"];
+    $input = strtolower($input);
+
     // First check if input field in the form is set, if not assign an id number of a pokemon to avoid error messages
     if (!empty($_GET["poke_input"])) {
-        $input = $_GET["poke_input"];
 
         // Get JSON data from API
         @$get_poke_data = file_get_contents("https://pokeapi.co/api/v2/pokemon/$input");
@@ -23,6 +25,16 @@
         $poke_data = json_decode($get_poke_data, true);
         $poke_species = json_decode($get_poke_species, true);
 
+        // Check for wrong input by checking if returned data gives an error, if this is the case show the first Pokemon
+        if ($poke_data === null || $poke_species === null) {
+            @$get_poke_data = file_get_contents("https://pokeapi.co/api/v2/pokemon/1");
+            @$get_poke_species = file_get_contents("https://pokeapi.co/api/v2/pokemon-species/1");
+
+            $poke_data = json_decode($get_poke_data, true);
+            $poke_species = json_decode($get_poke_species, true);
+        }
+
+        // If there is no input show the first Pokemon
         } else {
             @$get_poke_data = file_get_contents("https://pokeapi.co/api/v2/pokemon/1");
             @$get_poke_species = file_get_contents("https://pokeapi.co/api/v2/pokemon-species/1");
@@ -32,10 +44,13 @@
         }
 
     // Assign variables to selected data
-    $poke_name = $poke_data["name"];
+    $poke_name = ucfirst($poke_data["name"]);
     $poke_id = $poke_data["id"];
     $poke_img = $poke_data["sprites"]["front_default"];
     $poke_text = $poke_species["flavor_text_entries"][0]["flavor_text"];
+    $poke_type = $poke_data["types"][0]["type"]["name"];
+    $poke_hp = $poke_data["stats"][0]["base_stat"];
+    $poke_attack = $poke_data["stats"][1]["base_stat"];
 
     // Loop to show four moves in a list
     function showMoves($moves){
@@ -68,14 +83,30 @@
 
     <div class="container-main">
         <div class="container-top">
+            <div class="circles">
+            <div class="circle-big-blue"></div>
+            <div class="small-circles">
+                <div class="circle-red"></div>
+                <div class="circle-yellow"></div>
+                <div class="circle-green"></div>
+            </div>
+            </div>
             <img class="poke-logo" src="img/pokemon-logo.png" alt="pokemon-logo">
         </div>
 
         <div class="container-center">
             <div class="container-left">
+                <div class="poke-stats"></div>
             <?php
-                echo "<h2 class='poke-name'>Name: $poke_name </h2>";
-                echo "<h2 class='poke-id'>ID: $poke_id </h2>";
+                echo "<p class='poke-stats'>
+                        <span class='poke-hp'>Hp: $poke_hp </span>
+                        <span class='poke-attack'>Attack: $poke_attack </span>
+                        <span class='poke-type'>Type: $poke_type </span>
+                     </p>";
+                echo "<h2 class='poke-name-row'
+                        <span class='poke-name'>Name: $poke_name </span>
+                        <span class='poke-id'>ID: $poke_id </span>
+                      </h2>";
                 echo "<img class='poke-img' src='$poke_img' alt='Pokemon image'>";
                 hasEvolved($poke_species);
             ?>
