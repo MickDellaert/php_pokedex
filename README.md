@@ -1,3 +1,6 @@
+![](img/pokedex_19_05_v2.jpg)
+Screenshot of the current state of the project
+
 # Goals:
 
 - Making sure Apache is set up and running
