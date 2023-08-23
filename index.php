@@ -23,8 +23,8 @@ if (!empty($_GET["poke_input"])) {
     $input = strtolower($input);
 
     // Get JSON data from API
-    @$get_poke_data = file_get_contents("https://pokeapi.co/api/v2/pokemon/$input");
-    @$get_poke_species = file_get_contents("https://pokeapi.co/api/v2/pokemon-species/$input");
+    $get_poke_data = file_get_contents("https://pokeapi.co/api/v2/pokemon/$input");
+    $get_poke_species = file_get_contents("https://pokeapi.co/api/v2/pokemon-species/$input");
 
     // Decode JSON data into PHP array
     $poke_data = json_decode($get_poke_data, true);
@@ -32,8 +32,8 @@ if (!empty($_GET["poke_input"])) {
 
     // Check for wrong input by checking if returned data gives an error, if this is the case show the first Pokemon
     if ($poke_data === null || $poke_species === null) {
-        @$get_poke_data = file_get_contents("https://pokeapi.co/api/v2/pokemon/1");
-        @$get_poke_species = file_get_contents("https://pokeapi.co/api/v2/pokemon-species/1");
+        $get_poke_data = file_get_contents("https://pokeapi.co/api/v2/pokemon/1");
+        $get_poke_species = file_get_contents("https://pokeapi.co/api/v2/pokemon-species/1");
 
         $poke_data = json_decode($get_poke_data, true);
         $poke_species = json_decode($get_poke_species, true);
@@ -41,14 +41,14 @@ if (!empty($_GET["poke_input"])) {
 
     // If there is no input show the first Pokemon
 } else {
-    @$get_poke_data = file_get_contents("https://pokeapi.co/api/v2/pokemon/1");
-    @$get_poke_species = file_get_contents("https://pokeapi.co/api/v2/pokemon-species/1");
+    $get_poke_data = file_get_contents("https://pokeapi.co/api/v2/pokemon/1");
+    $get_poke_species = file_get_contents("https://pokeapi.co/api/v2/pokemon-species/1");
 
     $poke_data = json_decode($get_poke_data, true);
     $poke_species = json_decode($get_poke_species, true);
 }
 
-@$get_poke_count = file_get_contents("https://pokeapi.co/api/v2/pokemon/");
+$get_poke_count = file_get_contents("https://pokeapi.co/api/v2/pokemon/");
 $poke_count = json_decode($get_poke_count, true);
 
 // Assign variables to selected data
